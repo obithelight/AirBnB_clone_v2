@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""
-Generate a tgz archive from the contents of AirBnB web_static
-"""
+# Generate a tgz archive from the contents of AirBnB web_static
 
 
 import os
