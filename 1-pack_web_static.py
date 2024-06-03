@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 # Generate a tgz archive from the contents of AirBnB web_static
 
-
 import os
 from datetime import datetime
 from fabric.api import local
+
 
 def do_pack():
     """
@@ -12,11 +12,12 @@ def do_pack():
     """
 
     dt = datetime.now()
-    file = f"versions/web_static_{dt.year}{dt.month}{dt.day}{dt.hour}{dt.minute}{dt.second}.tgz"
+    file_name = (f"versions/web_static_{dt.year}{dt.month}{dt.day}"
+                 f"{dt.hour}{dt.minute}{dt.second}.tgz")
 
-    if os.path.isdir("versions") is False:
-        if local("mkdir versions").failed is True:
+    if not os.path.isdir("versions"):
+        if local("mkdir versions").failed:
             return None
-    if local(f"tar -cvzf {file} web_static").failed is True:
+    if local(f"tar -cvzf {file_name} web_static").failed:
         return None
-    return file
+    return file_name
